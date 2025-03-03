@@ -1,0 +1,45 @@
+{
+  "name": "ng-bank-account-validator",
+  "version": "1.0.0",
+  "description": "Verify nigerian NUBAN bank accounts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Younggregs/ng-bank-account-validator.git"
+  },
+  "keywords": [
+    "nuban",
+    "nigeria",
+    "bank",
+    "validation",
+    "paystack",
+    "flutterwave",
+    "card-bin",
+    "bank-account",
+    "typescript"
+  ],
+  "author": "Retzam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Younggregs/ng-bank-account-validator/issues"
+  },
+  "homepage": "https://github.com/Younggregs/ng-bank-account-validator#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
