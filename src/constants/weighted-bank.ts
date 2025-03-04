@@ -126,7 +126,7 @@ export const WEIGHTED_NIGERIAN_BANKS: Bank[] = [
     slug: "optimus_bank",
     name: "OPTIMUS BANK",
     code: "000036",
-    oldCode: "106",
+    oldCode: "107",
     weight: 1,
   },
   {
