@@ -3,6 +3,7 @@ export interface Bank {
   slug: string;
   name: string;
   code: string;
+  oldCode?: string;
   weight?: number;
 }
 
