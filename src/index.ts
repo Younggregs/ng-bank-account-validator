@@ -83,6 +83,13 @@ class Nuban {
         };
       }
 
+      if (!this.validateBankCode(bankCode)) {
+        return {
+          status: false,
+          message: `Invalid bank code for payment provider - ${this.paymentProvider}`,
+        };
+      }
+
       const queryMethod = {
         [PaymentProvider.PAYSTACK]: this.paystackQuery,
         [PaymentProvider.FLUTTERWAVE]: this.flutterwaveQuery,
@@ -308,6 +315,40 @@ class Nuban {
     return Boolean(
       accountNumber?.length === NUBAN_LENGTH && /^\d+$/.test(accountNumber)
     );
+  }
+
+  /**
+   * Validates bank code format based on payment provider
+   * @param bankCode - The bank code to validate
+   * @returns boolean indicating if the bank code format is valid
+   * @private
+   *
+   * @example
+   * ```typescript
+   * // Paystack (exactly 3 digits)
+   * // Requires the old bank code
+   * validateBankCode('057', PaymentProvider.PAYSTACK); // true
+   * validateBankCode('000015', PaymentProvider.PAYSTACK); // false
+   *
+   * // Flutterwave (accepts 3 or 6 digits)
+   * // Accepts both the old and new bank codes.
+   * validateBankCode('057', PaymentProvider.FLUTTERWAVE); // true
+   * validateBankCode('000015', PaymentProvider.FLUTTERWAVE); // true
+   * ```
+   */
+  private validateBankCode(bankCode: string): boolean {
+    if (!bankCode?.length || !/^\d+$/.test(bankCode)) {
+      return false;
+    }
+
+    switch (this.paymentProvider) {
+      case PaymentProvider.PAYSTACK:
+        return bankCode.length === 3;
+      case PaymentProvider.FLUTTERWAVE:
+        return bankCode.length === 3 || bankCode.length === 6;
+      default:
+        return false;
+    }
   }
 
   /**
