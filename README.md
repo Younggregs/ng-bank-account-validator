@@ -16,6 +16,10 @@ A TypeScript/Javascript package for validating Nigerian NUBAN (Nigerian Uniform 
 - Implements CBN's NUBAN algorithm
 - Includes a weighted list of popular Nigerian banks
 
+Note: For some reason Paystack do not validate banks with the new CBN bank codes of 6 digits. They still use the oldCode of 3 digits. With Paystack use Nuban.weightedBanks because it contains the oldCodes of 3 digits but the list of banks are limited.
+
+Meanwhile Flutterwave supports both, so choose wisely.
+
 ## Installation
 
 ```bash
