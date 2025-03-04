@@ -1,6 +1,6 @@
 {
   "name": "ng-bank-account-validator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Verify nigerian NUBAN bank accounts",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,7 +27,8 @@
     "flutterwave",
     "card-bin",
     "bank-account",
-    "typescript"
+    "typescript",
+    "bank-code"
   ],
   "author": "Retzam",
   "license": "MIT",

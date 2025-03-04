@@ -2,6 +2,8 @@
 
 A TypeScript/Javascript package for validating Nigerian NUBAN (Nigerian Uniform Bank Account Number) bank accounts using Paystack or Flutterwave APIs.
 
+A key advantage here is that you can swap payment providers and get the same response.
+
 [![npm version](https://badge.fury.io/js/ng-bank-account-validator.svg)](https://www.npmjs.com/package/ng-bank-account-validator)
 [![TypeScript](https://img.shields.io/badge/TypeScript-4.9-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -16,7 +18,7 @@ A TypeScript/Javascript package for validating Nigerian NUBAN (Nigerian Uniform 
 - Implements CBN's NUBAN algorithm
 - Includes a weighted list of popular Nigerian banks
 
-Note: For some reason Paystack do not validate banks with the new CBN bank codes of 6 digits. They still use the oldCode of 3 digits. With Paystack use Nuban.weightedBanks because it contains the oldCodes of 3 digits but the list of banks are limited.
+Note: For some reason Paystack do not validate banks with the new CBN bank codes of 6 digits. They still use the old code of 3 digits. With Paystack use Nuban.weightedBanks because it contains the old codes of 3 digits but the list of banks are limited.
 
 Meanwhile Flutterwave supports both, so choose wisely.
 
@@ -135,6 +137,7 @@ interface Bank {
   slug: string;
   name: string;
   code: string;
+  oldCode?: string;
   weight?: number;
 }
 ```
@@ -213,7 +216,7 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
-Retzam
+[Retzam](https://github.com/Younggregs)
 
 ## Support
 
