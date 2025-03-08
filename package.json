@@ -1,6 +1,6 @@
 {
   "name": "ng-bank-account-validator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Verify nigerian NUBAN bank accounts",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -28,6 +28,7 @@
     "card-bin",
     "bank-account",
     "typescript",
+    "javascript",
     "bank-code"
   ],
   "author": "Retzam",

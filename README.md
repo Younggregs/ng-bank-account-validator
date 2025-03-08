@@ -97,6 +97,24 @@ const popularBanks = Nuban.getPossibleNubanBanks(
 );
 ```
 
+### Get Bank
+
+```typescript
+// Get bank by slug, code or old code.
+//
+// Note: Using BankProperty.OLD_CODE searches only weightedBanks
+// because that is the list of banks with oldCodes.
+const bank = Nuban.getBank("000013", BankProperty.CODE);
+
+// Returns:
+// {
+//   id: 11;
+//   slug: 'bank_slug'
+//   name: 'bank_name',
+//   code: '000013'
+// }
+```
+
 ## API Reference
 
 ### `class Nuban`
@@ -112,6 +130,7 @@ constructor(apiKey: string, paymentProvider: PaymentProvider)
 - `validateAccount(accountNumber: string, bankCode: string): Promise<AccountValidationResponse>`
 - `resolveCardBin(firstSixDigits: string): Promise<CardBinResponse>`
 - `static getPossibleNubanBanks(accountNumber: string, banks?: Bank[]): Bank[]`
+- `static getBank(value: string, property: BankProperty): Bank | undefined`
 
 #### Static Properties
 
@@ -136,9 +155,19 @@ interface Bank {
   id: number;
   slug: string;
   name: string;
-  code: string;
-  oldCode?: string;
+  code: string; // New 6 Digit Codes.
+  oldCode?: string; // Old 3 Digit Codes.
   weight?: number;
+}
+```
+
+### `BankProperty`
+
+```typescript
+export enum BankProperty {
+  SLUG = "SLUG",
+  CODE = "CODE",
+  OLD_CODE = "OLD_CODE",
 }
 ```
 
