@@ -9,6 +9,7 @@ import { WEIGHTED_NIGERIAN_BANKS } from "./constants/weighted-bank";
 import {
   AccountValidationResponse,
   Bank,
+  BankProperty,
   CardBinResponse,
   CardBrand,
   CardType,
@@ -229,6 +230,35 @@ class Nuban {
     return banks.filter((bank) =>
       Nuban.isPossibleNubanBank(accountNumber, bank.code)
     );
+  }
+
+  /**
+   * Get bank from slug, code or oldCode.
+   * @param value - The value to find (e.g., '000013')
+   * @param property - The bank property (e.g., BankProperty.CODE)
+   * @returns Bank
+   *
+   * @example
+   * ```typescript
+   * const bank = getBank('000013', BankProperty.CODE);
+   * // {
+   * //   id: 11;
+   * //   slug: 'bank_slug'
+   * //   name: 'bank_name',
+   * //   code: '000013'
+   * // }
+   * ```
+   */
+  static getBank(value: string, property: BankProperty): Bank | undefined {
+    const bankSearchMap: Record<BankProperty, (bank: Bank) => boolean> = {
+      [BankProperty.SLUG]: (bank) => bank.slug === value,
+      [BankProperty.CODE]: (bank) => bank.code === value,
+      [BankProperty.OLD_CODE]: (bank) => bank.oldCode === value, // Only applies to weightedBanks
+    };
+
+    return property === BankProperty.OLD_CODE
+      ? this.weightedBanks.find(bankSearchMap[property])
+      : this.banks.find(bankSearchMap[property]);
   }
 
   /**
@@ -521,6 +551,7 @@ export {
   Nuban,
   PaymentProvider,
   Bank,
+  BankProperty,
   AccountValidationResponse,
   CardType,
   CardBrand,

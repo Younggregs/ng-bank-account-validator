@@ -2,9 +2,15 @@ export interface Bank {
   id: number;
   slug: string;
   name: string;
-  code: string;
-  oldCode?: string;
+  code: string; // New 6 Digit Codes.
+  oldCode?: string; // Old 3 Digit Codes.
   weight?: number;
+}
+
+export enum BankProperty {
+  SLUG = "SLUG",
+  CODE = "CODE",
+  OLD_CODE = "OLD_CODE",
 }
 
 export enum PaymentProvider {
